@@ -8,21 +8,22 @@
      </script>
   </head>
   <body>
-    <div id="container"></div>
+    <div id="nav"></div>
+    <div id="win"></div>
     <script>
-      var html = "<table><thead><th colspan='2'>NAVIGATOR</th></thead><tr>";
+      var html = "<table><thead><th colspan='2'>NAVIGATOR</th></thead><tbody><tr>";
       for (prop in navigator) {
         html += "\n<td>" + prop + "</td><td>" + navigator[prop] + "</td></tr><tr>"
       }
-      html += "</tr></table>"
-      document.getElementById("container").innerHTML = html;
+      html += "</tr><tbody></table>\n\n"
+      document.getElementById("nav").innerHTML = html;
 
       var html = "<table><thead><th colspan='2'>WINDOW</th></thead><tr>";
       for (prop in window) {
         html += "\n<td>" + prop + "</td><td>" + window[prop] + "</td></tr><tr>"
       }
       html += "</tr></table>"
-      document.getElementById("container").innerHTML = html;
+      document.getElementById("win").innerHTML = html;
     </script>
   </body>
 </html>
