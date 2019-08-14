@@ -7,4 +7,15 @@
        document.documentElement.appendChild(ua);
      </script>
   </head>
+  <body>
+    <div id="container"></div>
+    <script>
+      var html = "<table><thead><th colspan='2'>NAVIGATOR</th></thead><tr>";
+      for (prop in navigator) {
+        html += "<td>" + prop + "</td><td>" + navigator[prop] + "</td></tr><tr>"
+      }
+      html += "</tr></table>"
+      document.getElementById("container").innerHTML = html;
+    </script>
+  </body>
 </html>
