@@ -10,20 +10,236 @@
   <body>
     <div id="nav"></div>
     <div id="win"></div>
+    <div id="init"></div>
     <script>
-      var html = "<table><thead><th colspan='2'>NAVIGATOR</th></thead><tbody><tr>";
-      for (prop in navigator) {
-        html += "\n<td>" + prop + "</td><td>" + navigator[prop] + "</td></tr><tr>"
-      }
-      html += "</tr><tbody></table>\n\n"
-      document.getElementById("nav").innerHTML = html;
+      // var html = "<table><thead><th colspan='2'>NAVIGATOR</th></thead><tbody><tr>";
+      // for (prop in navigator) {
+      //   html += "\n<td>" + prop + "</td><td>" + navigator[prop] + "</td></tr><tr>"
+      // }
+      // html += "</tr><tbody></table>\n\n"
+      // document.getElementById("nav").innerHTML = html;
+      //
+      // var html = "<table><thead><th colspan='2'>WINDOW</th></thead><tr>";
+      // for (prop in window) {
+      //   html += "\n<td>" + prop + "</td><td>" + window[prop] + "</td></tr><tr>"
+      // }
+      // html += "</tr></table>"
+      // document.getElementById("win").innerHTML = html;
 
-      var html = "<table><thead><th colspan='2'>WINDOW</th></thead><tr>";
-      for (prop in window) {
-        html += "\n<td>" + prop + "</td><td>" + window[prop] + "</td></tr><tr>"
+      function uc(t) {
+        return typeof t
+      }
+      function wr() {
+          try {
+              var t = navigator.mimeTypes && navigator.mimeTypes.toString();
+              return "[object MimeTypeArray]" === t || /MSMimeTypesCollection/i.test(t)
+          } catch (t) {
+              return !1
+          }
+      }
+      function dr() {
+          var t = !1;
+          try {
+              if (window.ActiveXObject)
+                  new ActiveXObject("ShockwaveFlash.ShockwaveFlash"),
+                  t = !0;
+              else if (navigator.mimeTypes)
+                  for (var n in navigator.mimeTypes)
+                      if (navigator.mimeTypes.hasOwnProperty(n)) {
+                          var e = navigator.mimeTypes[n];
+                          if (e && "application/x-shockwave-flash" === e.type) {
+                              t = !0;
+                              break
+                          }
+                      }
+          } catch (t) {}
+          return t
+      }
+      function kr() {
+          var t = [];
+          try {
+              var n = document.location.ancestorOrigins;
+              if (document.location.ancestorOrigins)
+                  for (var e = 0; e < n.length; e++)
+                      n[e] && "null" !== n[e] && t.push(n[e])
+          } catch (t) {}
+          return t
+      }
+      function Rt(t) {
+          return "function" == typeof t && /\{\s*\[native code\]\s*\}/.test("" + t)
+      }
+      function yr() {
+          var t = !1;
+          try {
+              var n = new Audio;
+              n && "function" == typeof n.addEventListener && (t = !0)
+          } catch (t) {}
+          return t
+      }
+      function Ar() {
+          try {
+              return window.hasOwnProperty("_cordovaNative") || window.hasOwnProperty("Ti") || window.hasOwnProperty("webView") || window.hasOwnProperty("Android") || window.document.hasOwnProperty("ondeviceready") || window.navigator.hasOwnProperty("standalone") || window.external && "notify"in window.external || navigator.userAgent.indexOf(" Mobile/") > 0 && -1 === navigator.userAgent.indexOf(" Safari/")
+          } catch (t) {
+              return !1
+          }
+      }
+      var Ic = function() {
+        try {
+            return window.atob
+        } catch (t) {}
+      }()
+      function et(t) {
+          var n = []
+            , e = void 0
+            , o = void 0
+            , r = void 0
+            , i = 0
+            , a = void 0
+            , c = t.length;
+          try {
+              if (Zc.test(t) || /=/.test(t) && (/=[^=]/.test(t) || /={3}/.test(t)))
+                  return null;
+              for (c % 4 > 0 && (t += window.Array(4 - c % 4 + 1).join("="),
+              c = t.length); i < c; ) {
+                  for (o = [],
+                  a = i; i < a + 4; )
+                      o.push(Wc.indexOf(t.charAt(i++)));
+                  for (e = (o[0] << 18) + (o[1] << 12) + ((63 & o[2]) << 6) + (63 & o[3]),
+                  r = [(e & 255 << 16) >> 16, 64 === o[2] ? -1 : (65280 & e) >> 8, 64 === o[3] ? -1 : 255 & e],
+                  a = 0; a < 3; ++a)
+                      (r[a] >= 0 || 0 === a) && n.push(String.fromCharCode(r[a]))
+              }
+              return n.join("")
+          } catch (t) {
+              return null
+          }
+      }
+      function nt(t) {
+          return "function" == typeof Ic ? Ic(t) : et(t)
+      }
+      function Nr() {
+          try {
+              return null !== document.elementFromPoint(0, 0)
+          } catch (t) {
+              return !0
+          }
+      }
+      function It() {
+          return "number" == typeof navigator.maxTouchPoints ? navigator.maxTouchPoints : "number" == typeof navigator.msMaxTouchPoints ? navigator.msMaxTouchPoints : void 0
+      }
+      function Ir() {
+          var t = null;
+          if (void 0 !== document.hidden)
+              t = "";
+          else
+              for (var n = ["webkit", "moz", "ms", "o"], e = 0; e < n.length; e++)
+                  if (void 0 !== document[n[e] + "Hidden"]) {
+                      t = n[e];
+                      break
+                  }
+          return t
+      }
+      function Zr() {
+          var t = Ir()
+            , n = ("" === t ? "v" : "V") + "isibilityState";
+          return document[n]
+      }
+      function Wr() {
+          try {
+              document.createEvent("TouchEvent")
+          } catch (t) {
+              return !1
+          }
+      }
+      function Wt(t) {
+          var n = 0;
+          try {
+              for (; t && t.parent && t !== t.parent && n < 25; )
+                  n++,
+                  t = t.parent
+          } catch (t) {
+              n = -1
+          }
+          return n
+      }
+      var uf = window.location && window.location.href || ""
+      var fs = nt("d2ViZHJpdmVy")
+      var n = {}
+      var us = "missing"
+      n.PX59 = navigator.userAgent
+      n.PX61 = navigator.language
+      n.PX313 = navigator.languages
+      n.PX63 = navigator.platform
+      n.PX86 = !!(navigator.doNotTrack || null === navigator.doNotTrack || navigator.msDoNotTrack || window.doNotTrack)
+      "object" === uc(navigator.geolocation) || navigator.geolocation || (n.PX156 = "undefined"),
+      n.PX88 = n.PX133 = wr()
+      n.PX169 = navigator.mimeTypes && navigator.mimeTypes.length || -1
+      n.PX62 = navigator.product
+      n.PX69 = navigator.productSub
+      n.PX64 = navigator.appVersion
+      n.PX64 = navigator.appVersion
+      n.PX65 = navigator.appName
+      n.PX66 = navigator.appCodeName
+      n.PX67 = navigator.buildID
+      n.PX60 = "onLine"in navigator && !0 === navigator.onLine
+      n.PX68 = "cookieEnabled"in navigator && !0 === navigator.cookieEnabled
+      n.PX87 = navigator.geolocation + "" == "[object Geolocation]"
+      n.PX163 = dr()
+      n.PX185 = window.innerHeight || -1
+      n.PX186 = window.innerWidth || -1
+      n.PX187 = window.scrollX || window.pageXOffset || 0
+      n.PX188 = window.scrollY || window.pageYOffset || 0
+      n.PX120 = kr();
+      n.PX94 = window.history && "number" == typeof window.history.length && window.history.length || -1
+      n.PX95 = !(0 === window.outerWidth && 0 === window.outerHeight),
+      n.PX155 = window.Date()
+      n.PX166 = Rt(window.setTimeout)
+      n.PX167 = Rt(window.setInterval)
+      n.PX96 = uf
+      n.PX55 = document.referrer ? encodeURIComponent(document.referrer) : ""
+      n.PX135 = Rt(Function.prototype.bind)
+      n.PX139 = yr()
+      n.PX138 = Rt(window.openDatabase)
+      n.PX140 = document.defaultView && Rt(document.defaultView.getComputedStyle)
+      n.PX141 = window.hasOwnProperty("onorientationchange") || !!window.onorientationchange
+      n.PX142 = Rt(window.EventSource)
+      n.PX143 = Rt(window.BatteryManager) || Rt(navigator.battery) || Rt(navigator.getBattery)
+      n.PX397 = Ar(),
+      n.PX147 = !!window.ActiveXObject
+      n.PX148 = !!window.XDomainRequest && /native code|XDomainRequest/g.test(window.XDomainRequest + "")
+      n.PX151 = window.hasOwnProperty(fs) || !!window[fs] || "true" === document.getElementsByTagName("html")[0].getAttribute(fs)
+      n.PX239 = !!window._Selenium_IDE_Recorder,
+      n.PX240 = !!document.__webdriver_script_fn,
+      n.PX152 = !!window.domAutomation || !!window.domAutomationController,
+      n.PX153 = !!window._phantom || !!window.callPhantom,
+      n.PX314 = !!window.geb,
+      n.PX192 = !!window.awesomium,
+      n.PX184 = Nr(),
+      n.PX234 = !!window.spawn,
+      n.PX235 = !!window.emit,
+      n.PX236 = !!window.Buffer,
+      n.PX194 = !!window.v8Locale,
+      n.PX195 = !!navigator.sendBeacon,
+      n.PX237 = It(),
+      n.PX238 = navigator.msDoNotTrack || us,
+      n.PX196 = Rt(window.RunPerfTest),
+      n.PX207 = !!window.fmget_targets,
+      n.PX208 = Zr(),
+      n.PX218 = +document.documentMode || 0,
+      n.PX231 = +window.outerHeight || 0,
+      n.PX232 = +window.outerWidth || 0,
+      n.PX247 = Wt(window),
+      n.PX251 = !!window.__nightmare,
+      n.PX254 = !!window.showModalDialog,
+      n.PX295 = Wr(),
+      n.PX268 = window.hasOwnProperty("ontouchstart") || !!window.ontouchstart
+
+      var html = "<table><thead><th colspan='2'>INITJS</th></thead><tr>";
+      for (prop in n) {
+        html += "\n<td>" + prop + "</td><td>" + n[prop] + "</td></tr><tr>"
       }
       html += "</tr></table>"
-      document.getElementById("win").innerHTML = html;
+      document.getElementById("init").innerHTML = html;
     </script>
   </body>
 </html>
