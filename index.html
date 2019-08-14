@@ -16,6 +16,13 @@
       }
       html += "</tr></table>"
       document.getElementById("container").innerHTML = html;
+
+      var html = "<table><thead><th colspan='2'>WINDOW</th></thead><tr>";
+      for (prop in window) {
+        html += "\n<td>" + prop + "</td><td>" + window[prop] + "</td></tr><tr>"
+      }
+      html += "</tr></table>"
+      document.getElementById("container").innerHTML = html;
     </script>
   </body>
 </html>
