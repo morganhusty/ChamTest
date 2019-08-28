@@ -244,6 +244,24 @@
               return -1
           }
       }
+      function Vi(t, n) {
+        for (var e = -1, o = 0; o < n.length; o++) {
+          if (n[o] in t) {
+            e = o;
+            break
+          }
+        }
+        return e
+      }
+      function ji() {
+        var n = Vi(document, al);
+        return n
+      }
+
+      function Yi() {
+        var n = Vi(window, al);
+        return n
+      }
       var uf = window.location && window.location.href || ""
       var fs = nt("d2ViZHJpdmVy")
       var n = {}
@@ -251,7 +269,10 @@
       var zd = "fetch"
       var Bd = window.performance && performance.timing
       var Hd = "toJSON"
-      var Ud = "createElement"
+      var Ud = "createElement",
+        al = ["__driver_evaluate", "__webdriver_evaluate", "__selenium_evaluate", "__fxdriver_evaluate", "__driver_unwrapped", "__webdriver_unwrapped", "__selenium_unwrapped", "__fxdriver_unwrapped", "_Selenium_IDE_Recorder", "_selenium", "calledSelenium", "$cdc_asdjflasutopfhvcZLmcfl_", "$chrome_asyncScriptInfo", "__$webdriverAsyncExecutor", "webdriver", "__webdriverFunc", "domAutomation", "domAutomationController", "__lastWatirAlert", "__lastWatirConfirm", "__lastWatirPrompt", "__webdriver_script_fn", "_WEBDRIVER_ELEM_CACHE"],
+        cl = ["driver-evaluate", "webdriver-evaluate", "selenium-evaluate", "webdriverCommand", "webdriver-evaluate-response"],
+        ul = ["webdriver", "cd_frame_id_"]
         , Cd = "|"
         , Bd = window.performance && performance.timing
         , Gd = window.chrome
@@ -402,6 +423,8 @@
       n.PX466 = !!window.Worklet,
       n.PX467 = !!window.AudioWorklet,
       n.PX468 = !!window.AudioWorkletNode
+      n.PX738 = ji()
+      n.PX739 = Yi()
 
       var html = "<table><thead><th colspan='2'>INITJS</th></thead><tr>";
       for (prop in n) {
@@ -410,5 +433,6 @@
       html += "</tr></table>"
       document.getElementById("init").innerHTML = html;
     </script>
+    <iframe height=300 width=300 src='https://www.google.com'></iframe>
   </body>
 </html>
