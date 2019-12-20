@@ -4,7 +4,13 @@
      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
      <script>
        function onSubmit(token) {
-         document.getElementById("demo-form").submit();
+         var form = document.getElementById("demo-form")
+         resp_value = form.getAttribute("g-recaptcha-response")
+         var resp = document.createElement("input");
+         resp.setAttribute("name", "response")
+         resp.setAttribute("value", resp_value.text)
+         form.appendChild(script);
+         form.submit();
        }
      </script>
   </head>
