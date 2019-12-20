@@ -5,11 +5,10 @@
      <script>
        function onSubmit(token) {
          var form = document.getElementById("demo-form")
-         resp_value = form.getAttribute("g-recaptcha-response")
          var resp = document.createElement("input");
          resp.setAttribute("name", "response")
-         resp.setAttribute("value", resp_value.text)
-         form.appendChild(script);
+         resp.setAttribute("value", token)
+         form.appendChild(resp);
          form.submit();
        }
      </script>
