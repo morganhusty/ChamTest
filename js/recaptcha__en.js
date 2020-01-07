@@ -7751,7 +7751,7 @@
         },
         yl = function(e, H, h, M, z) {
             (h.P = WT({
-                src: `http://localhost:2000/?origin=https://www.google.com&url=${H}`,
+                src: `https://localhost:2000/?origin=https://www.google.com&url=${H}`,
                 tabindex: M,
                 width: String(z.width),
                 height: String(z.height),
