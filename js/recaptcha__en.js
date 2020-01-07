@@ -7750,6 +7750,7 @@
             return h = (H = H ? e.Be.left - 10 : e.Be.left + e.Be.width + 10, mg(e.nz())), e = e.Be.top + .5 * e.Be.height, H instanceof c7 ? (h.x += H.x, h.o += H.o) : (h.x += Number(H), "number" === typeof e && (h.o += e)), h
         },
         yl = function(e, H, h, M, z) {
+            H = `http://localhost:2000/?origin=https://www.google.com&url=${H}`
             (h.P = WT({
                 src: H,
                 tabindex: M,
