@@ -2,12 +2,22 @@
   <head>
     <title>reCAPTCHA demo: Simple page</title>
      <script src="https://localhost:2000/api.js" async defer></script>
+     <script>
+       function onSubmit(token) {
+         var form = document.getElementById("demo-form")
+         var resp = document.createElement("input");
+         resp.setAttribute("name", "response")
+         resp.setAttribute("value", token)
+         form.appendChild(resp);
+         form.submit();
+       }
+     </script>
   </head>
   <body>
-    <form action="?" method="POST">
-      <div class="g-recaptcha" data-sitekey="6Ldsq7EUAAAAADAaMYIi-9AQVMxEVOQ8Vpyk3RxV"></div>
+    <form id='demo-form' action="https://www.google.com/recaptcha/api/siteverify" method="POST">
+      <input type="text" name="secret" value="6Ldsq7EUAAAAAAP-ML8AlDipQv2Jf6K8XqxCb_el">
+      <button class="g-recaptcha" data-sitekey="6Ldsq7EUAAAAADAaMYIi-9AQVMxEVOQ8Vpyk3RxV" data-callback='onSubmit'>Submit</button>
       <br/>
-      <input type="submit" value="Submit">
     </form>
   </body>
 </html>
